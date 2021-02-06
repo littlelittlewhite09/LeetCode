@@ -8,18 +8,18 @@
  * }
  */
 class Solution {
-    List<Integer> list = new ArrayList<>();
+    int res,k;
     public int kthLargest(TreeNode root, int k) {
+        this.k = k;
         traver(root);
-        int numsOfNode = list.size();
-        return list.get(k-1);
+        return res;
     }
 
     //类似于中序遍历：右子树->根节点->左节点
     public void traver(TreeNode root){
         if(root == null) return;
         traver(root.right);
-        list.add(root.val);
+        if(--k == 0) res=root.val;
         traver(root.left);
     }
 }
